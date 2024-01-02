@@ -100,4 +100,4 @@ jobs:
         with:
           name: s2m-compiled
           path: |
-            source2mod/package/**
+            source2mod/build/package/**

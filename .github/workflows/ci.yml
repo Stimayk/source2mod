@@ -102,7 +102,7 @@ jobs:
           name: build-artifacts
           path: sourcemod/build/**/*
 
-  # Optional job to download artifacts
+  # Optional job to download artifacts 
   download_artifacts:
     needs: test
     runs-on: ubuntu-latest

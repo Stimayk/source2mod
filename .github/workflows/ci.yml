@@ -98,6 +98,6 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: compiled-binaries
+          name: s2m-compiled
           path: |
-            source2mod/**
+            source2mod/package/**

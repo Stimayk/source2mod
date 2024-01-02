@@ -100,4 +100,4 @@ jobs:
         with:
           name: compiled-binaries
           path: |
-            source2mod/build/*
+            source2mod/**

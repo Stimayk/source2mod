@@ -4,6 +4,7 @@ on:
     branches:
      - main
      - '[0-9]+.[0-9]+-dev'
+  workflow_dispatch:
   pull_request:
     branches:
      - main
@@ -94,3 +95,19 @@ jobs:
           cd build
           python ../configure.py --enable-optimize --sdks=${{ join(fromJSON(env.SDKS)) }} --targets=${{ env.ARCH }} --mms-path=${{ env.DEPENDENCIES_ROOT }}/mmsource-${{ env.MMSOURCE_VERSION }} --hl2sdk-root=${{ env.DEPENDENCIES_ROOT }} --mysql-path=${{ env.DEPENDENCIES_ROOT }}/mysql-${{ env.MYSQL_VERSION }} --mysql64-path=${{ env.DEPENDENCIES_ROOT }}/mysql-${{ env.MYSQL_VERSION }}-x86_64
           ambuild
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: sourcemod/build/**/*
+
+  # Optional job to download artifacts
+  download_artifacts:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: downloaded_artifacts
